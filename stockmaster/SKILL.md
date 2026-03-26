@@ -1,12 +1,20 @@
 ---
 name: stockmaster
+version: "1.0.0"
 description: >
   Analyzes A-share (Chinese stock) market conditions by scoring bull/bear and hot/cold indicators,
   selects the optimal trading strategy, monitors portfolio holdings, and generates daily operation
-  signals (buy/sell/hold/add/reduce). Use when the user mentions stock analysis, A-share market,
-  portfolio management, stock screening, buy/sell signals, position management, technical analysis,
-  Chan Theory, market trends, stop-loss/take-profit, or any Chinese stock trading topic.
-  Trigger even for casual requests like "how is the market today" or "analyze this stock".
+  signals (buy/sell/hold/add/reduce).
+
+## 触发词
+
+**中文关键词：**
+市场分析、股票分析、持仓查询、止损止盈、买入信号、卖出信号、仓位管理、技术分析、缠论、趋势判断、牛熊、冷热
+
+**English Keywords：**
+market analysis, stock analysis, portfolio query, stop-loss/take-profit, buy signal, sell signal, position management, technical analysis, Chan Theory, trend judgment, bull/bear, hot/cold
+
+Use when the user mentions stock analysis, A-share market, portfolio management, stock screening, buy/sell signals, position management, technical analysis, Chan Theory, market trends, stop-loss/take-profit, or any Chinese stock trading topic. Trigger even for casual requests like "how is the market today" or "analyze this stock".
 ---
 
 # StockMaster — A股智能操盘系统
@@ -21,17 +29,65 @@ StockMaster 是一个模块化的A股分析系统，核心逻辑是：
 
 系统由6个模块组成，各模块可独立运行，也可通过工作流自动串联。
 
-## 前置条件
+## 数据流
 
-首次运行前，检查并安装依赖：
+```
+行情数据获取 → 趋势分析 → 策略匹配 → 持仓监控 → 信号生成 → 报告输出
+```
+
+- **行情数据获取**：通过 AKShare API 获取实时行情数据
+- **趋势分析**：计算牛熊冷热指标，判断当前市场状态
+- **策略匹配**：根据市场状态匹配对应操盘策略
+- **持仓监控**：分析当前持仓，生成操作指令
+- **信号生成**：输出买入/卖出/持仓/加仓/减仓信号
+- **报告输出**：生成结构化每日操盘报告
+
+## 依赖安装
+
+首次运行前，安装所有依赖包：
 
 ```bash
-pip install akshare pandas numpy matplotlib mplfinance ta
+pip install akshare pandas numpy ta matplotlib mplfinance
 ```
+
+**核心依赖：**
+
+| 包名 | 用途 |
+|------|------|
+| akshare | 行情数据获取 |
+| pandas | 数据处理 |
+| numpy | 数值计算 |
+| ta | 技术指标计算 |
+| matplotlib | 可视化（可选） |
+| mplfinance | K线图绘制（可选） |
 
 如果 akshare 安装失败，可尝试：
 ```bash
 pip install akshare --upgrade
+```
+
+## 文件结构
+
+```
+stockmaster/
+├── scripts/
+│   ├── trend_analyzer.py      # 趋势分析脚本
+│   ├── portfolio_monitor.py   # 持仓监控脚本
+│   ├── daily_report.py        # 每日报告生成
+│   └── fetch_market_data.py   # 行情数据获取
+├── references/
+│   ├── market_trend.md        # 行情趋势判断
+│   ├── aggressive_strategy.md # 进攻策略
+│   ├── cautious_strategy.md   # 谨慎乐观策略
+│   ├── conservative_strategy.md # 保守观望策略
+│   ├── defensive_strategy.md  # 空仓关注策略
+│   ├── portfolio_management.md # 持仓管理
+│   └── akshare_api.md        # AKShare API 参考
+├── config/                    # 配置文件目录
+├── data/
+│   └── portfolio.json         # 持仓数据
+├── tests/                     # 测试文件
+└── SKILL.md                   # 本文件
 ```
 
 ## 模块索引
@@ -118,13 +174,81 @@ python scripts/daily_report.py
 - 直接编辑 `data/portfolio.json`
 - 告诉 Claude "我买了XXX，XXX股，成本价XXX"，Claude 会自动更新持仓文件
 
-## OpenClaw 集成
+## OpenClaw集成
 
 此技能设计为可被 OpenClaw 智能体平台调度。推荐配置：
 
+### 定时任务配置
+
+```yaml
+cron: "0 15:30 * * 1-5"
+timezone: "Asia/Shanghai"
+enabled: true
+```
+
+### 工作流配置
+
+```yaml
+workflow:
+  name: "每日全流程分析"
+  steps:
+    - script: "trend_analyzer.py"
+    - script: "portfolio_monitor.py"
+    - script: "daily_report.py"
+  output_format: "markdown"
+```
+
+### 推送配置
+
+支持多种推送渠道：
+
+**微信：**
+```yaml
+notify:
+  channel: "wechat"
+  webhook_url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=XXXX"
+```
+
+**邮件：**
+```yaml
+notify:
+  channel: "email"
+  smtp_server: "smtp.example.com"
+  smtp_port: 587
+  from: "stockmaster@example.com"
+  to: ["user@example.com"]
+```
+
+**钉钉：**
+```yaml
+notify:
+  channel: "dingtalk"
+  webhook_url: "https://oapi.dingtalk.com/robot/send?access_token=XXXX"
+```
+
+### 触发条件
+
 - **触发时间**：每个交易日 15:30（收盘后）
 - **执行工作流**：工作流一（全流程分析）
-- **输出方式**：生成每日报告，可推送至微信/邮件/钉钉
+- **输出方式**：生成每日报告，推送至配置的渠道
+
+## 策略触发条件
+
+根据用户输入的关键词或问题类型，自动匹配对应的操盘策略：
+
+| 用户输入 | 触发策略 | 说明 |
+|----------|----------|------|
+| 市场分析、行情怎么样、今天大盘 | 趋势判断 | 执行工作流一，获取市场状态 |
+| 股票分析、帮我看股、分析XXX | 趋势判断 + 持仓分析 | 分析个股或市场整体 |
+| 持仓查询、我的股票、仓位 | 持仓管理 | 分析当前持仓状态 |
+| 止损止盈、怎么设置止损 | 持仓管理 | 提供止损止盈建议 |
+| 买入信号、推荐股票、买什么 | 策略选股 | 根据当前策略推荐股票 |
+| 卖出信号、要卖吗、什么时候卖 | 持仓管理 | 生成卖出建议 |
+| 仓位管理、仓位多少合适 | 持仓管理 | 提供仓位管理建议 |
+| 技术分析、K线、指标 | 趋势判断 | 进行技术分析 |
+| 缠论、缠中说禅 | 趋势判断 | 应用缠论分析方法 |
+| 趋势判断、牛熊 | 趋势判断 | 判断市场牛熊状态 |
+| 冷热、市场热度 | 趋势判断 | 判断市场冷热状态 |
 
 ## 输出格式
 
