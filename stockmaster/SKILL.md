@@ -15,9 +15,44 @@ description: >
 market analysis, stock analysis, portfolio query, stop-loss/take-profit, buy signal, sell signal, position management, technical analysis, Chan Theory, trend judgment, bull/bear, hot/cold
 
 Use when the user mentions stock analysis, A-share market, portfolio management, stock screening, buy/sell signals, position management, technical analysis, Chan Theory, market trends, stop-loss/take-profit, or any Chinese stock trading topic. Trigger even for casual requests like "how is the market today" or "analyze this stock".
+
+## OpenClaw 命令定义
+
+本项目支持通过 OpenClaw 命令调用，命令格式：`/stockmaster:<command>`
+
+| 命令 | 功能 | 调用脚本 | 输出 |
+|------|------|----------|------|
+| `/stockmaster:hq` | 生成当日行情和策略 | `scripts/market_analysis.py` | HQ_yymmdd.md + CL_yymmdd.md |
+| `/stockmaster:trend` | 判断市场趋势 | `scripts/trend_analyzer.py` | JSON 输出 |
+| `/stockmaster:portfolio` | 持仓分析 | `scripts/portfolio_monitor.py` | JSON 输出 |
+| `/stockmaster:report` | 生成每日报告 | `scripts/daily_report.py` | Markdown 报告 |
+
+### 命令示例
+
+**生成当日行情和策略：**
+```bash
+/stockmaster:hq
+```
+
+执行后生成：
+- `data/HQ_yymmdd.md` - 市场行情分析报告
+- `data/CL_yymmdd.md` - 当日策略
 ---
 
-# StockMaster — A股智能操盘系统
+# StockMaster — A 股智能操盘系统
+
+## 🚀 快速开始
+
+**首次使用？请查看 [INSTALL.md](INSTALL.md) 获取详细的安装指南！**
+
+**快速安装：**
+```bash
+# 运行自动安装脚本
+python install.py
+
+# 或手动安装依赖
+pip install -r requirements.txt
+```
 
 ## 系统概览
 

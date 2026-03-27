@@ -1,0 +1,43 @@
+{
+  "workflow": {
+    "name": "StockMaster Daily Trading Workflow",
+    "description": "每日交易分析自动执行工作流，包含趋势分析、策略选择、持仓监控和报告生成"
+  },
+  "trigger": {
+    "schedule": "0 15:30 * * 1-5",
+    "description": "每个交易日收盘后自动执行"
+  },
+  "steps": [
+    {
+      "name": "trend_analyzer",
+      "script": "scripts/trend_analyzer.py",
+      "description": "运行趋势分析，确定市场状态",
+      "continue_on_error": false
+    },
+    {
+      "name": "strategy_selector",
+      "script": "scripts/strategy_selector.py",
+      "description": "根据趋势结果匹配策略",
+      "continue_on_error": false
+    },
+    {
+      "name": "portfolio_monitor",
+      "script": "scripts/portfolio_monitor.py",
+      "description": "分析当前持仓并生成信号",
+      "continue_on_error": false
+    },
+    {
+      "name": "report_generator",
+      "script": "scripts/daily_report.py",
+      "description": "生成每日Markdown报告",
+      "continue_on_error": false
+    }
+  ],
+  "output": {
+    "format": "markdown",
+    "destination": "data/report_{date}.md",
+    "push_enabled": true,
+    "push_channels": ["wechat", "email", "dingtalk"]
+  },
+  "fallback_strategy": "conservative"
+}

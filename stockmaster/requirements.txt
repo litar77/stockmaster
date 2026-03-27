@@ -1,0 +1,15 @@
+# StockMaster 核心依赖包
+# 使用方法：pip install -r requirements.txt
+
+# 核心依赖（必需）
+akshare>=1.18.0        # A 股金融数据接口库
+pandas>=2.0.0          # 数据处理和分析
+numpy>=1.24.0          # 数值计算
+ta>=0.10.0             # 技术指标计算库
+
+# 可选依赖（用于可视化功能）
+# matplotlib>=3.7.0    # 绘图库（如需可视化可取消注释）
+# mplfinance>=0.12.9b0 # K 线图绘制（如需可视化可取消注释）
+
+# 工具库（推荐）
+# mplfinance>=0.12.9b0 # 金融数据可视化

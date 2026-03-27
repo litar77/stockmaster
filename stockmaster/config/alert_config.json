@@ -1,0 +1,11 @@
+{
+  "position_warning_ratio": 0.85,
+  "single_stock_warning_ratio": 0.85,
+  "total_loss_warning_pct": -10.0,
+  "total_loss_critical_pct": -15.0,
+  "consecutive_loss_days": 3,
+  "volume_ratio_warning": 0.5,
+  "volume_ratio_hot": 1.5,
+  "ad_ratio_warning": 0.8,
+  "ad_ratio_hot": 2.0
+}

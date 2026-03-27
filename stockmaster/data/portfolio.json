@@ -2,18 +2,18 @@
   "account": {
     "total_capital": 500000,
     "cash": 300000,
-    "last_updated": ""
+    "last_updated": "2026-03-27 22:21:10"
   },
   "holdings": [
     {
       "code": "600519",
       "name": "贵州茅台",
       "buy_date": "2026-03-10",
-      "buy_price": 1480.00,
+      "buy_price": 1480.0,
       "quantity": 100,
-      "cost": 148000.00,
-      "stop_loss": 1406.00,
-      "target_profit": 1702.00,
+      "cost": 148000.0,
+      "stop_loss": 1406.0,
+      "target_profit": 1702.0,
       "strategy": "cautious",
       "notes": "白马蓝筹，谨慎乐观策略建仓"
     },
@@ -21,13 +21,25 @@
       "code": "300750",
       "name": "宁德时代",
       "buy_date": "2026-03-18",
-      "buy_price": 220.00,
+      "buy_price": 220.0,
       "quantity": 200,
-      "cost": 44000.00,
-      "stop_loss": 209.00,
-      "target_profit": 253.00,
+      "cost": 44000.0,
+      "stop_loss": 209.0,
+      "target_profit": 253.0,
       "strategy": "cautious",
       "notes": "新能源龙头，缩量回调至支撑位"
+    },
+    {
+      "code": "000858",
+      "name": "五粮液",
+      "buy_date": "2026-03-26",
+      "buy_price": 150.0,
+      "quantity": 200,
+      "cost": 30000.0,
+      "stop_loss": 142.5,
+      "target_profit": 172.5,
+      "strategy": "cautious",
+      "notes": "白酒龙头，回调建仓"
     }
   ],
   "watchlist": [
