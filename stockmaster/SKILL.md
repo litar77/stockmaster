@@ -23,7 +23,7 @@ Use when the user mentions stock analysis, A-share market, portfolio management,
 | 命令 | 功能 | 调用脚本 | 输出 |
 |------|------|----------|------|
 | `/stockmaster:hq` | 生成当日行情和策略 | `scripts/market_analysis.py` | HQ_yymmdd.md + CL_yymmdd.md |
-| `/stockmaster:trend` | 判断市场趋势 | `scripts/trend_analyzer.py` | JSON 输出 |
+| `/stockmaster:trend` | 判断市场趋势 | `scripts/market_analysis.py` | JSON 输出 |
 | `/stockmaster:portfolio` | 持仓分析 | `scripts/portfolio_monitor.py` | JSON 输出 |
 | `/stockmaster:report` | 生成每日报告 | `scripts/daily_report.py` | Markdown 报告 |
 
@@ -186,7 +186,7 @@ python scripts/daily_report.py
 
 只运行模块1，快速了解当前市场状态：
 - 读取 `references/market_trend.md`
-- 运行 `scripts/trend_analyzer.py`
+- 运行 `scripts/market_analysis.py`
 
 ### 工作流三：单独分析持仓
 
@@ -227,7 +227,7 @@ enabled: true
 workflow:
   name: "每日全流程分析"
   steps:
-    - script: "trend_analyzer.py"
+    - script: "market_analysis.py"
     - script: "portfolio_monitor.py"
     - script: "daily_report.py"
   output_format: "markdown"

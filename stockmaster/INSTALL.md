@@ -295,7 +295,7 @@ export PATH="$PATH:$STOCKMASTER_HOME/scripts"
 ```bash
 # 添加到 ~/.bashrc 或 ~/.zshrc
 alias stockmaster-hq='python $STOCKMASTER_HOME/scripts/market_analysis.py'
-alias stockmaster-trend='python $STOCKMASTER_HOME/scripts/trend_analyzer.py'
+alias stockmaster-trend='python $STOCKMASTER_HOME/scripts/market_analysis.py'
 alias stockmaster-portfolio='python $STOCKMASTER_HOME/scripts/portfolio_monitor.py'
 ```
 

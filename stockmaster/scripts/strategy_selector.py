@@ -233,7 +233,7 @@ def main():
         temperature = sys.argv[2]
         result = select_strategy(trend, temperature)
     else:
-        from trend_analyzer import analyze_bull_bear, analyze_hot_cold
+        from market_analysis import analyze_bull_bear, analyze_hot_cold
 
         print("StockMaster 策略选择器 - 正在分析市场状态...", file=sys.stderr)
 

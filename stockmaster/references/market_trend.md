@@ -220,8 +220,8 @@
 
 ```bash
 # 运行趋势分析
-python scripts/trend_analyzer.py
-
+python scripts/market_analysis.py
+```
 # 输出示例
 {
   "date": "2024-01-15",

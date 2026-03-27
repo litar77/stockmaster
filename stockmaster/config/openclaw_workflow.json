@@ -9,9 +9,9 @@
   },
   "steps": [
     {
-      "name": "trend_analyzer",
-      "script": "scripts/trend_analyzer.py",
-      "description": "运行趋势分析，确定市场状态",
+      "name": "market_analysis",
+      "script": "scripts/market_analysis.py",
+      "description": "运行市场分析，确定市场状态",
       "continue_on_error": false
     },
     {
