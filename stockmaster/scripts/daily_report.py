@@ -30,7 +30,7 @@ ACTION_EMOJI = {
 
 def run_trend_analyzer(scripts_dir):
     """运行市场分析"""
-    script_path = scripts_dir / "market_analysis.py"
+    script_path = scripts_dir / "hq_analysis.py"
     try:
         result = subprocess.run(
             [sys.executable, str(script_path)],

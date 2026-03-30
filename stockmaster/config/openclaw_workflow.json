@@ -9,8 +9,8 @@
   },
   "steps": [
     {
-      "name": "market_analysis",
-      "script": "scripts/market_analysis.py",
+      "name": "hq_analysis",
+      "script": "scripts/hq_analysis.py",
       "description": "运行市场分析，确定市场状态",
       "continue_on_error": false
     },

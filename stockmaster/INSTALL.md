@@ -81,7 +81,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # 5. 验证安装
-python scripts/market_analysis.py
+python scripts/hq_analysis.py
 ```
 
 ---
@@ -213,7 +213,7 @@ dir data  # Windows
 
 ```bash
 # 测试行情分析模块
-python scripts/market_analysis.py
+python scripts/hq_analysis.py
 
 # 测试趋势分析
 python scripts/trend_analyzer.py
@@ -269,7 +269,7 @@ schedules:
     cron: "0 15:30 * * 1-5"  # 每周一至周五 15:30
     timezone: Asia/Shanghai
     workflow:
-      - script: scripts/market_analysis.py
+      - script: scripts/hq_analysis.py
         output: data/report.md
     notify:
       on_success: true
@@ -294,7 +294,7 @@ export PATH="$PATH:$STOCKMASTER_HOME/scripts"
 
 ```bash
 # 添加到 ~/.bashrc 或 ~/.zshrc
-alias stockmaster-hq='python $STOCKMASTER_HOME/scripts/market_analysis.py'
+alias stockmaster-hq='python $STOCKMASTER_HOME/scripts/hq_analysis.py'
 alias stockmaster-portfolio='python $STOCKMASTER_HOME/scripts/portfolio_monitor.py'
 ```
 
@@ -336,7 +336,7 @@ python -c "import akshare; df = ak.stock_zh_index_daily(symbol='sh000001'); prin
 python scripts/test_chanlun.py
 
 # 运行行情分析
-python scripts/market_analysis.py
+python scripts/hq_analysis.py
 
 # 检查生成的报告
 ls -l data/HQ_*.md
@@ -448,7 +448,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ls data/
 
 # 检查脚本输出
-python scripts/market_analysis.py 2>&1
+python scripts/hq_analysis.py 2>&1
 
 # 检查文件权限
 chmod 755 data/
