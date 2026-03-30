@@ -184,7 +184,7 @@ python scripts/daily_report.py
 ### 工作流二：单独判断行情
 
 只运行模块1，快速了解当前市场状态：
-- 读取 `references/market_trend.md`
+- 读取 `references/market_analysis.md`
 - 运行 `scripts/market_analysis.py`
 
 ### 工作流三：单独分析持仓
