@@ -23,7 +23,6 @@ Use when the user mentions stock analysis, A-share market, portfolio management,
 | 命令 | 功能 | 调用脚本 | 输出 |
 |------|------|----------|------|
 | `/stockmaster:hq` | 生成当日行情和策略 | `scripts/market_analysis.py` | HQ_yymmdd.md + CL_yymmdd.md |
-| `/stockmaster:trend` | 判断市场趋势 | `scripts/market_analysis.py` | JSON 输出 |
 | `/stockmaster:portfolio` | 持仓分析 | `scripts/portfolio_monitor.py` | JSON 输出 |
 | `/stockmaster:report` | 生成每日报告 | `scripts/daily_report.py` | Markdown 报告 |
 
