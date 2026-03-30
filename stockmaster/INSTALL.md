@@ -216,7 +216,7 @@ dir data  # Windows
 python scripts/market_analysis.py
 
 # 测试趋势分析
-python scripts/trend_analyzer.py
+python scripts/market_analysis.py
 
 # 测试持仓监控（需要先配置 portfolio.json）
 python scripts/portfolio_monitor.py --strategy defensive

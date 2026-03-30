@@ -28,7 +28,7 @@ ACTION_EMOJI = {
 }
 
 
-def run_trend_analyzer(scripts_dir):
+def run_market_analysis(scripts_dir):
     """运行市场分析"""
     script_path = scripts_dir / "market_analysis.py"
     try:
@@ -183,7 +183,7 @@ def main():
 
     # Step 1: 趋势分析
     print("Step 1/3: 运行趋势分析...", file=sys.stderr)
-    trend_data = run_trend_analyzer(scripts_dir)
+    trend_data = run_market_analysis(scripts_dir)
     if "error" in trend_data:
         print(f"趋势分析出错: {trend_data['error']}", file=sys.stderr)
         strategy = "conservative"  # 出错时默认保守

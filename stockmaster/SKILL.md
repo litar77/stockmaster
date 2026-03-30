@@ -105,12 +105,14 @@ pip install akshare --upgrade
 ```
 stockmaster/
 ├── scripts/
-│   ├── trend_analyzer.py      # 趋势分析脚本
+│   ├── market_analysis.py      # 市场分析脚本
 │   ├── portfolio_monitor.py   # 持仓监控脚本
 │   ├── daily_report.py        # 每日报告生成
+│   ├── strategy_selector.py   # 策略选择器
+│   ├── test_chanlun.py        # 缠论测试
 │   └── fetch_market_data.py   # 行情数据获取
 ├── references/
-│   ├── market_trend.md        # 行情趋势判断
+│   ├── market_analysis.md     # 行情趋势判断
 │   ├── aggressive_strategy.md # 进攻策略
 │   ├── cautious_strategy.md   # 谨慎乐观策略
 │   ├── conservative_strategy.md # 保守观望策略
@@ -128,7 +130,7 @@ stockmaster/
 
 | 模块 | 文件 | 功能 |
 |------|------|------|
-| 行情趋势判断 | `references/market_trend.md` | 判断当前市场状态：牛/熊 × 热/冷 |
+| 行情趋势判断 | `references/market_analysis.md` | 判断当前市场状态：牛/熊 × 热/冷 |
 | 进攻策略 | `references/aggressive_strategy.md` | 牛+热：龙头爆发，快进快出 |
 | 谨慎乐观策略 | `references/cautious_strategy.md` | 牛+冷：低风险稳健盈利 |
 | 保守观望策略 | `references/conservative_strategy.md` | 熊+热：严控风险，不亏为赢 |
@@ -144,10 +146,10 @@ stockmaster/
 
 **Step 1 — 判断行情状态**
 
-读取 `references/market_trend.md`，使用 `scripts/trend_analyzer.py` 获取大盘数据并计算牛熊冷热状态。
+读取 `references/market_analysis.md`，使用 `scripts/market_analysis.py` 获取大盘数据并计算牛熊冷热状态。
 
 ```bash
-python scripts/trend_analyzer.py
+python scripts/market_analysis.py
 ```
 
 输出形如：`{"trend": "bull", "temperature": "hot", "strategy": "aggressive", "details": {...}}`
