@@ -218,7 +218,7 @@ def run_test():
     """运行测试"""
     print_header("步骤 7: 运行测试")
     
-    test_script = Path(__file__).parent / 'scripts' / 'hq_analysis.py'
+    test_script = Path(__file__).parent / 'scripts' / 'market_analysis.py'
     
     if not test_script.exists():
         print_warning("测试脚本不存在，跳过测试")
@@ -260,7 +260,7 @@ def print_summary():
         print("     source .venv/bin/activate")
     print()
     print("  2. 运行行情分析:")
-    print("     python scripts/hq_analysis.py")
+    print("     python scripts/market_analysis.py")
     print()
     print("  3. 查看使用文档:")
     print("     打开 SKILL.md 文件")

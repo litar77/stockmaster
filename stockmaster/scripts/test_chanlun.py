@@ -9,7 +9,7 @@ from pathlib import Path
 # 添加父目录到路径
 sys.path.insert(0, str(Path(__file__).parent))
 
-from hq_analysis import (
+from market_analysis import (
     analyze_bull_bear, 
     analyze_hot_cold,
     detect_fractals,
